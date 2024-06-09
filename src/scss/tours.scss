@@ -1,0 +1,35 @@
+@import 'variaveis';
+
+.texto-tours {
+
+    padding: 20px;
+
+    h2 {
+        text-align: $center;
+        text-transform: $uppercase;
+        font-weight: $bold;
+        color: $darkgreen;
+        text-shadow: rgba(0, 0, 0, 0.6) 2px 2px 2px;
+    }
+}
+
+.card {
+
+    .card-title,
+    .card-text {
+        color: $black;
+        text-align: $center;
+    }
+}
+
+.btn-tour {
+
+    background-color: $white;
+    color: $darkred;
+    border: 1px solid $darkred;
+
+    &:hover {
+        background-color: $darkred;
+        color: $white;
+    }
+}
