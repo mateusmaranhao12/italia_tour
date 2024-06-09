@@ -1,18 +1,22 @@
 <template>
   <div class="app-view">
     <navbar></navbar>
-    <router-view />
+    <div class="main-content">
+      <router-view />
+    </div>
+    <Footer></Footer>
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
 import Navbar from '../src/components/Navbar.vue'
+import Footer from '../src/components/Footer.vue'
 
 @Options({
 
   components: {
-    Navbar
+    Navbar, Footer
   }
 
 })
@@ -32,6 +36,10 @@ export default class App extends Vue {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
 }
 
 body::-webkit-scrollbar {

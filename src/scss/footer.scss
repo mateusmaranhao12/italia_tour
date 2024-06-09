@@ -1,0 +1,18 @@
+@import 'variaveis';
+
+.footer-italia-tour {
+    
+    background: rgb(92, 7, 0);
+    background: linear-gradient(90deg, rgba(92, 7, 0, 1) 0%, rgba(129, 10, 0, 1) 100%);
+    text-align: $center;
+    padding: 30px;
+
+    h4 {
+        text-shadow: $black 2px 2px 2px;
+        color: $white;
+    }
+
+    img {
+        height: 50px;
+    }
+}
