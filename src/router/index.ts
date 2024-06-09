@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import AgendarTour from '../views/AgendarTour.vue'
 import Home from '../views/Home.vue'
 import Tours from '../views/Tours.vue'
+import TourDetails from '../components/TourDetails.vue'
 
 const routes: Array<RouteRecordRaw> = [
 
@@ -21,6 +22,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/agendar-tour',
     name: 'agendar-tour',
     component: AgendarTour
+  },
+
+  {
+    path: '/tour-details:id',
+    name: 'TourDetails',
+    component: TourDetails
   }
 
 ]

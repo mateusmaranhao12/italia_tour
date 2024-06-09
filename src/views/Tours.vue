@@ -13,7 +13,7 @@
                             <p class="card-text">{{ tour.texto }}</p>
                         </div>
                         <div class="mb-2 mx-2 d-flex justify-content-end align-items-end">
-                            <button class="btn btn-tour">Ver mais detalhes</button>
+                            <button class="btn btn-tour" @click="viewDetails(tour)">Ver mais detalhes</button>
                         </div>
                     </div>
                 </div>
@@ -23,16 +23,32 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+import { Options, Vue } from 'vue-class-component'
+import { mapActions, mapGetters } from 'vuex'
+import { Tour } from '@/store'
 
-@Options({})
+@Options({
+
+    computed: {
+        ...mapGetters(['allTours'])
+    },
+
+    methods: {
+        ...mapActions(['selectTour'])
+    },
+})
+
 export default class Tours extends Vue {
-    tours = [
-        { id: 1, titulo: 'Roma', texto: 'lorem ipsum dolor sit amet', imagem: 'roma' },
-        { id: 2, titulo: 'Milão', texto: 'lorem ipsum dolor sit amet', imagem: 'milao' },
-        { id: 3, titulo: 'Veneza', texto: 'lorem ipsum dolor sit amet', imagem: 'veneza' },
-        { id: 4, titulo: 'Florença', texto: 'lorem ipsum dolor sit amet', imagem: 'florenca' },
-    ]
+
+    viewDetails(tour: Tour) { //ver detalhes do tour
+        (this as any).selectTour(tour)
+        this.$router.push({ name: 'TourDetails', params: { id: tour.id } })
+    }
+
+    get tours(): Tour[] {
+        return (this as any).allTours as Tour[]
+    }
+
 }
 </script>
 

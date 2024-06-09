@@ -1,0 +1,48 @@
+@import 'variaveis';
+
+.tour-details-text {
+    background: rgb(62, 5, 0);
+    background: linear-gradient(90deg, rgba(62, 5, 0, 1) 0%, rgba(3, 129, 0, 1) 100%);
+    padding: 20px;
+
+    h1 {
+        text-align: $center;
+        font-weight: $bold;
+        color: $white;
+        text-transform: $uppercase;
+        text-shadow: $black 2px 5px 2px;
+    }
+}
+
+.tour-details {
+
+    background-color: rgb(200, 255, 237);
+    padding: 50px;
+
+    img {
+        border-radius: 20px;
+    }
+
+    h3 {
+        font-weight: $bold;
+        color: $darkgreen;
+        text-shadow: $black 2px 2px 2px;
+        text-transform: $uppercase;
+    }
+
+}
+
+.tour-details2 {
+
+    h2 {
+        font-weight: $bold;
+        color: $darkred;
+        text-shadow: $black 2px 2px 2px;
+        text-transform: $uppercase;
+        text-align: $center;
+        border-top: 2px solid $darkred;
+        border-bottom: 2px solid $darkred;
+        padding: 20px;
+    }
+
+}
