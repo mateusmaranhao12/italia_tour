@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-italia-tour">
         <div class="container-fluid">
             <router-link class="navbar-brand" to="/"><img src="../assets/logo.png" class="img-fluid">Italia Tour</router-link>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            <button style="background-color: white;" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

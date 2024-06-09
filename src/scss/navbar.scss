@@ -9,6 +9,7 @@
         color: $white;
         font-weight: $bold;
         letter-spacing: 2px;
+        text-shadow: $black 2px 2px 2px;
 
         &:hover {
             transform: scale(1.1);
@@ -19,6 +20,7 @@
         color: $white;
         font-weight: $bold;
         letter-spacing: 2px;
+        text-shadow: $black 2px 2px 2px;
 
         &:after {
             display: $block;
@@ -41,7 +43,7 @@
         }
 
         &.active {
-            color: rgb(0, 255, 0);
+            color: $green;
             position: $relative;
             cursor: default;
             border-radius: 10px;
