@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import AgendarTour from '../views/AgendarTour.vue'
-import Gastronomia from '../views/Gastronomia.vue'
 import Home from '../views/Home.vue'
 import Tours from '../views/Tours.vue'
 
@@ -16,12 +15,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/tours',
     name: 'tours',
     component: Tours
-  },
-
-  {
-    path: '/gastronomia',
-    name: 'gastronomia',
-    component: Gastronomia
   },
 
   {

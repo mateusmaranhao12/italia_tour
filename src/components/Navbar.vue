@@ -17,11 +17,6 @@
                                 class="fa-solid fa-train"></i> Tours</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/gastronomia" :class="{ active: $route.path === '/gastronomia' }"
-                            class="nav-link"><i class="fa-solid fa-pizza-slice"></i>
-                            Gastronomia</router-link>
-                    </li>
-                    <li class="nav-item">
                         <router-link to="/agendar-tour" :class="{ active: $route.path === '/agendar-tour' }"
                             class="nav-link"><i class="fa-solid fa-calendar-days"></i>
                             Agendar

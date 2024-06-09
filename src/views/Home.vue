@@ -43,7 +43,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <img class="img-fluid" src="../assets/imgs/milao.jpg">
+                    <img class="img-fluid mb-4" src="../assets/imgs/milao.jpg">
                 </div>
                 <div class="col-md-6 d-flex justify-content-center align-items-center">
                     <p>Milão, uma metrópole na região da Lombardia ao norte da Itália, é uma capital mundial da moda e
@@ -87,7 +87,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <img class="img-fluid" src="../assets/imgs/florenca.jpg">
+                    <img class="img-fluid mb-4" src="../assets/imgs/florenca.jpg">
                 </div>
                 <div class="col-md-6 d-flex justify-content-center align-items-center">
                     <p>Florença, capital da região Toscana, na Itália, abriga muitas obras de arte e arquitetura
