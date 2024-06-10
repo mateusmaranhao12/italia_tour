@@ -30,7 +30,7 @@ const store = createStore<State>({
       {
         id: 1,
         titulo: 'Roma',
-        texto: 'Roma, o capital histórica da Itália',
+        texto: 'Roma, a capital histórica da Itália',
         imagem: 'roma',
         nome1: 'Coliseu',
         tour1: 'roma1',

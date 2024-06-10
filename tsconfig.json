@@ -1,21 +1,25 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "strict": true,
-    "jsx": "preserve",
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "useDefineForClassFields": true,
-    "sourceMap": true,
-    "baseUrl": ".",
+    "target": "esnext", // Usar a versão mais recente do ECMAScript
+    "module": "commonjs", // Para compatibilidade com Node.js
+    "strict": true, // Habilitar verificações estritas
+    "jsx": "preserve", // Para suporte a JSX em projetos frontend
+    "moduleResolution": "node", // Resolver módulos como Node.js
+    "experimentalDecorators": true, // Suporte para decorators
+    "skipLibCheck": true, // Pular verificação de bibliotecas para aumentar velocidade de compilação
+    "esModuleInterop": true, // Interoperabilidade com módulos ES
+    "allowSyntheticDefaultImports": true, // Permitir importações default sintéticas
+    "forceConsistentCasingInFileNames": true, // Forçar consistência no uso de maiúsculas/minúsculas nos nomes dos arquivos
+    "useDefineForClassFields": true, // Usar define para campos de classe
+    "sourceMap": true, // Gerar arquivos de mapeamento de fonte
+    "baseUrl": ".", // Base URL para resolução de módulos
     "types": [
-      "webpack-env"
-    ],
+      "node",
+      "axios"
+    ], // Adicionar tipos do Node.js
+    "rootDir": "./src", // Diretório raiz do código-fonte
+    "outDir": "./dist", // Diretório de saída para os arquivos compilados
+    "resolveJsonModule": true, // Permitir importação de arquivos JSON
     "paths": {
       "@/*": [
         "src/*"
@@ -28,14 +32,18 @@
       "scripthost"
     ]
   },
+
   "include": [
+    "src/**/*",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
+  
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ]
 }
