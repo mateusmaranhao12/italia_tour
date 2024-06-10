@@ -100,6 +100,10 @@ export default class AgendarTour extends Vue {
 
             this.mostrarMensagemAlerta('fa-solid fa-triangle-exclamation', 'Preencha todos os campos!', 'alert-danger')
 
+        } else if (!this.validarEmail(this.form.email)) {
+
+            this.mostrarMensagemAlerta('fa-solid fa-triangle-exclamation', 'Insira um e-mail válido!', 'alert-danger')
+
         } else if (this.form.data_ida > this.form.data_volta) {
 
             this.mostrarMensagemAlerta('fa-solid fa-circle-exclamation', 'A data de volta não pode ser anterior a data de ida!', 'alert-info')
@@ -110,7 +114,7 @@ export default class AgendarTour extends Vue {
 
     }
 
-    async agendarTour() {
+    async agendarTour() { //agendar Tour
 
         try {
 
@@ -130,6 +134,13 @@ export default class AgendarTour extends Vue {
         setTimeout(() => {
             this.mensagem_alerta = null
         }, 5000) // Remover a mensagem após 5 segundos
+    }
+
+    private validarEmail(email: string): boolean { //verificar se o email inserido é válido
+        // Expressão regular para validar e-mail
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        return regex.test(email)
+
     }
 
     private limparFormulario() { //Limpar formulário
