@@ -1,7 +1,9 @@
 <template>
     <div class="container">
         <div class="row justify-content-center align-items-center vh-100">
-            <div class="card card-forms">
+
+            <!--Etapa 1-->
+            <div v-if="etapa == 1" class="card card-forms">
                 <div class="card-body">
                     <h5 class="card-title mb-4">Agendar Tour</h5>
                     <div v-if="mensagem_alerta" class="mt-3 mb-3 text-center alert" :class="mensagem_alerta.status">
@@ -48,6 +50,24 @@
                     </form>
                 </div>
             </div>
+
+            <!--Etapa 2-->
+            <div v-if="etapa == 2" class="card card-forms">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Realizar pagamento valor: R$0,01</h5>
+                    <div v-if="mensagem_alerta" class="mt-3 mb-3 text-center alert" :class="mensagem_alerta.status">
+                        <i :class="mensagem_alerta.icone"></i> {{ mensagem_alerta.mensagem }}
+                    </div>
+                    <form @submit.prevent="validarFormulario">
+                        <div class="d-flex justify-content-center p-4 mt-4">
+                            <button type="submit" class="btn btn-primary me-2"><i class="fa-brands fa-pix"></i> Realizar
+                                Pagamento via Pix</button>
+                            <button type="submit" class="btn btn-secondary"><i class="fa-brands fa-stripe"></i> Realizar
+                                Pagamento via Stripe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -63,6 +83,8 @@ import { Alerta } from '@/utils/Alerta'
 export default class AgendarTour extends Vue {
 
     mensagem_alerta: Alerta | null = null
+
+    etapa = 1
 
     form = {
         nome: '',
@@ -120,9 +142,12 @@ export default class AgendarTour extends Vue {
 
             const response = await axios.post('http://localhost:3000/api/agendamentos', this.form)
 
-            this.mostrarMensagemAlerta('fa-solid fa-check', 'Tour agendado com sucesso!', 'alert-success')
+            this.mostrarMensagemAlerta('fa-solid fa-check', 'Tour agendado com sucesso! Agora basta realizar o pagamento.', 'alert-success')
             // Limpar o formulário após o envio
             this.limparFormulario()
+
+            //próxima etapa
+            this.proximaEtapa()
 
         } catch (error) {
             this.mostrarMensagemAlerta('fa-solid fa-triangle-exclamation', 'Erro ao agendar o tour', 'alert-danger')
@@ -141,6 +166,10 @@ export default class AgendarTour extends Vue {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         return regex.test(email)
 
+    }
+
+    private proximaEtapa() { //próxima etapa
+        this.etapa +=1
     }
 
     private limparFormulario() { //Limpar formulário
