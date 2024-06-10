@@ -4,16 +4,19 @@
             <div class="card card-forms">
                 <div class="card-body">
                     <h5 class="card-title mb-4">Agendar Tour</h5>
-                    <form @submit.prevent="agendarTour">
+                    <div v-if="mensagem_alerta" class="mt-3 mb-3 text-center alert" :class="mensagem_alerta.status">
+                        <i :class="mensagem_alerta.icone"></i> {{ mensagem_alerta.mensagem }}
+                    </div>
+                    <form @submit.prevent="validarFormulario">
                         <div class="row mb-4">
                             <div class="col-md-6 mb-4">
                                 <label for="nome" class="form-label">Nome</label>
-                                <input type="text" class="form-control" v-model="form.nome"
+                                <input type="text" class="form-control" id="name" v-model="form.nome"
                                     placeholder="Digite seu nome">
                             </div>
                             <div class="col-md-6">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" v-model="form.email"
+                                <input type="email" class="form-control" id="email" v-model="form.email"
                                     placeholder="Digite seu email">
                             </div>
                             <div class="col-md-6 mt-4">
@@ -52,10 +55,15 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
 import axios from 'axios'
+import { Alerta } from '@/utils/Alerta'
 
 @Options({
 })
+
 export default class AgendarTour extends Vue {
+
+    mensagem_alerta: Alerta | null = null
+
     form = {
         nome: '',
         email: '',
@@ -63,38 +71,78 @@ export default class AgendarTour extends Vue {
         destino: '',
         data_ida: '',
         data_volta: ''
-    };
+    }
 
     origem = [
         { id: 1, cidade: 'Turim' },
         { id: 2, cidade: 'Nápoles' },
         { id: 3, cidade: 'Gênova' },
         { id: 4, cidade: 'Bolonha' }
-    ];
+    ]
 
     destino = [
         { id: 1, cidade: 'Roma' },
         { id: 2, cidade: 'Milão' },
         { id: 3, cidade: 'Veneza' },
         { id: 4, cidade: 'Florença' }
-    ];
+    ]
+
+    public validarFormulario() { //verificar se todos os campos foram preenchidos
+
+        if (
+            this.form.nome === '' ||
+            this.form.email === '' ||
+            this.form.local_origem === '' ||
+            this.form.destino === '' ||
+            this.form.data_ida === '' ||
+            this.form.data_volta === ''
+        ) {
+
+            this.mostrarMensagemAlerta('fa-solid fa-triangle-exclamation', 'Preencha todos os campos!', 'alert-danger')
+
+        } else if (this.form.data_ida > this.form.data_volta) {
+
+            this.mostrarMensagemAlerta('fa-solid fa-circle-exclamation', 'A data de volta não pode ser anterior a data de ida!', 'alert-info')
+
+        } else {
+            this.agendarTour()
+        }
+
+    }
 
     async agendarTour() {
+
         try {
-            const response = await axios.post('http://localhost:3000/api/agendamentos', this.form);
-            alert('Tour agendado com sucesso!');
+
+            const response = await axios.post('http://localhost:3000/api/agendamentos', this.form)
+
+            this.mostrarMensagemAlerta('fa-solid fa-check', 'Tour agendado com sucesso!', 'alert-success')
             // Limpar o formulário após o envio
-            this.form = {
-                nome: '',
-                email: '',
-                local_origem: '',
-                destino: '',
-                data_ida: '',
-                data_volta: ''
-            };
+            this.limparFormulario()
+
         } catch (error) {
-            alert('Erro ao agendar o tour')
+            this.mostrarMensagemAlerta('fa-solid fa-triangle-exclamation', 'Erro ao agendar o tour', 'alert-danger')
         }
+    }
+
+    private mostrarMensagemAlerta(icone: string, mensagem: string, status: string) { //mensagem Alerta
+        this.mensagem_alerta = { icone, mensagem, status }
+        setTimeout(() => {
+            this.mensagem_alerta = null
+        }, 5000) // Remover a mensagem após 5 segundos
+    }
+
+    private limparFormulario() { //Limpar formulário
+
+        this.form = {
+            nome: '',
+            email: '',
+            local_origem: '',
+            destino: '',
+            data_ida: '',
+            data_volta: ''
+        }
+
     }
 }
 </script>
