@@ -85,8 +85,8 @@
                     <div class="d-flex justify-content-between p-4 mt-4">
                         <button type="submit" @click="etapaAnterior" class="btn btn-danger me-2"><i
                                 class="fa-solid fa-backward"></i> Etapa anterior</button>
-                        <button type="submit" @click="confirmarPagamento" class="btn btn-success me-2"><i
-                                class="fa-solid fa-check"></i> Confirmar pagamento</button>
+                        <button v-if="mostrarBotaoConfirmarPagamento" type="submit" @click="confirmarPagamento"
+                            class="btn btn-success me-2"><i class="fa-solid fa-check"></i> Confirmar pagamento</button>
                     </div>
                 </div>
 
@@ -108,6 +108,7 @@ export default class AgendarTour extends Vue {
     mensagem_alerta: Alerta | null = null
     qrCodeURL: string | null = null
     etapa = 1
+    mostrarBotaoConfirmarPagamento = false
 
     form = {
         nome: '',
@@ -229,13 +230,17 @@ export default class AgendarTour extends Vue {
         } catch (error) {
             console.error('Erro ao gerar QR Code:', error)
         }
+
+        setTimeout(() => {
+            this.mostrarBotaoConfirmarPagamento = true
+        }, 5000)
     }
 
     async confirmarPagamento() { //Confirmar Pagamento via Pix
         try {
             // Aqui você pode adicionar lógica para confirmar o pagamento via Pix
             // Por enquanto, apenas vamos esperar por alguns segundos como exemplo
-            await new Promise(resolve => setTimeout(resolve, 3000)) // Simulando um pagamento de 3 segundos
+            await new Promise(resolve => setTimeout(resolve, 1000)) // Simulando um pagamento de 3 segundos
 
             // Após o pagamento ser confirmado, agende o tour
             this.agendarTour()
