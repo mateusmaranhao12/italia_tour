@@ -1,0 +1,1 @@
+web: concurrently "ts-node-dev src/server.ts" "npm run serve"
